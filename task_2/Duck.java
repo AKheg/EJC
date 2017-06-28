@@ -1,12 +1,19 @@
 
 public abstract class Duck {
     FlyBehavior flyBehavior;
-    int duck_speed;
+    int speed;
 
     public abstract int getSpeed();
-    public abstract void setSpeed(int speed);
 
-    public void performFly() {
+    public abstract void setSpeed(int speed_value);
+
+    public abstract void display();
+
+     Duck(){
+
+    }
+
+     void performFly() {
         flyBehavior.fly();
     }
 }

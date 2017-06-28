@@ -1,5 +1,6 @@
 
 public class MallardDuck extends Duck{
+
     MallardDuck(){
         flyBehavior = new FlyWithWings();
     }
@@ -7,7 +8,7 @@ public class MallardDuck extends Duck{
         System.out.println("i am wild duck");
     }
     public int getSpeed(){
-        return flyBehavior.getspeed();
+        return flyBehavior.getSpeed();
     }
     public void setSpeed(int value){
         this.speed = value;

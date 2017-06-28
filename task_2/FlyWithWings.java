@@ -3,7 +3,7 @@ public class FlyWithWings implements FlyBehavior{
 
     private int speed;
 
-    public int getspeed(){
+    public int getSpeed(){
         return speed;
     }
     public void fly(){

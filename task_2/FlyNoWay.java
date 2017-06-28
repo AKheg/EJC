@@ -1,12 +1,10 @@
 
 public class FlyNoWay implements FlyBehavior{
 
-    public int getspeed(){
+    public int getSpeed(){
         return 0;
     }
     public void fly(){
-        System.out.println("i cannot fly");
+
     }
-
-
 }
