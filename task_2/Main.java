@@ -1,5 +1,3 @@
-import sun.plugin2.liveconnect.JSExceptions;
-
 import java.util.Scanner;
 
 public class Main {
@@ -8,7 +6,6 @@ public class Main {
         System.out.println("Welcome to DuckCasino1");
 
         int Cash = 500;
-
         while (Cash > 0) {
             System.out.println("choose your duck from 0 to 4:");
 
@@ -53,12 +50,6 @@ public class Main {
                 System.out.println("Congratulations! You win!");
                 Cash += 200;
             }
-
-            /*for (int i = 0; i < 5; i++) {
-                System.out.println(ducks[i].getSpeed());
-            }*/
-           // System.out.println(chosenOne);
-            //System.out.println(speedMax);
             System.out.println("Your balance now: "+Cash);
         }
     }

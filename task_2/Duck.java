@@ -1,4 +1,3 @@
-
 public abstract class Duck {
     FlyBehavior flyBehavior;
     int speed;

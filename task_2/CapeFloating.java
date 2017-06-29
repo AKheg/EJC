@@ -1,4 +1,3 @@
-
 public class CapeFloating implements FlyBehavior {
     private int speed;
 

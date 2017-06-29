@@ -1,5 +1,3 @@
-
-
 public class RubberDuck extends Duck {
 
     RubberDuck(){
@@ -7,7 +5,6 @@ public class RubberDuck extends Duck {
     }
 
     public void display(){
-
     }
 
     public int getSpeed(){

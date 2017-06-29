@@ -1,4 +1,3 @@
-
 public class FlyWithWings implements FlyBehavior{
 
     private int speed;

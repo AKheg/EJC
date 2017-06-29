@@ -1,4 +1,3 @@
-
 public class MallardDuck extends Duck{
 
     MallardDuck(){

@@ -1,4 +1,3 @@
-
 public class DefaultDuck extends Duck{
     DefaultDuck(){
         flyBehavior = new FlyWithWings();
