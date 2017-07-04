@@ -1,18 +1,19 @@
 public class Battleships {
     int[][] Field = new int[10][10];
-
     //this method checks your coordinates to be within the array
     private boolean arrayBound(int i, int j) {
         return ((i >= 0) && (i <= 9)) && ((j >= 0) && (j <= 9));
     }
-
+    //check if we can put new deck
+    private boolean testNewDeck(int[][] f, int i, int j) {
+        return arrayBound(i, j) && ((f[i][j] == 0) || (f[i][j] == -2));
+    }
     //set value into array cell
     private void setValue(int[][] f, int i, int j, int value) {
         if ((arrayBound(i, j)) && (f[i][j] == 0)) {
             f[i][j] = value;
         }
     }
-
     //next two methods surround array cells with value
     private void surroundValue(int[][] f, int i, int j, int value) {
         for (int k = -1; k < 2; k++) {
@@ -23,7 +24,6 @@ public class Battleships {
             }
         }
     }
-
     private void surroundEnd(int[][] f) {
         for (int i = 0; i < f.length; i++) {
             for (int j = 0; j < f.length; j++) {
@@ -31,88 +31,86 @@ public class Battleships {
             }
         }
     }
+    //randomly puts N_Deck_ship on the field
+    void PutNDeckShip(int[][] f, int deckNumber) {
+        while (true) {
+            // i row, j column - head of the ship coordinates
+            int i, j;
+            i = (int) (Math.random() * 10);
+            j = (int) (Math.random() * 10);
+            //Choose direction: 0 - up, 1 - right, 2 - down, 3 - left
+            int direction;
+            direction = (int) (Math.random() * 4);
+            boolean flag = false;
+            if (testNewDeck(f, i, j)) {
+                    if (direction == 0) {
+                        if (testNewDeck(f, i - (deckNumber - 1), j))
+                            flag = true;
+                    }
+                    else if (direction == 1) {
+                        if (testNewDeck(f, i, j + (deckNumber - 1)))
+                            flag = true;
+                    }
+                    else if (direction == 2) {
+                        if (testNewDeck(f, i + (deckNumber - 1), j))
+                            flag = true;
+                    }
+                    else if (direction == 3) {
+                        if (testNewDeck(f, i, j - (deckNumber - 1)))
+                            flag = true;
+                    }
 
-    //randomly puts 4x1-ship on the field
-    void Put4PShip(int[][] f) {
-        // i - row, j - column
-        int i, j;
-        i = (int) (Math.random() * 10);
-        j = (int) (Math.random() * 10);
-        f[i][j] = 4;
-        surroundValue(f, i, j, -2);
-        //0 - up, 1 - right, 2 - down, 3 - left
-        int direction;
-        direction = (int) (Math.random() * 4);
-
-        switch (direction) {
-            case 0: {
-                if (!(arrayBound(i - 3, j))) {
-                    direction = 2;
+            }
+            if (flag) {
+                f[i][j] = deckNumber;
+                surroundValue(f, i, j, -2);
+                switch (direction) {
+                    case 0: {
+                        for (int k = deckNumber - 1; k >= 1; k--) {
+                            f[i - k][j] = deckNumber;
+                            surroundValue(f, i - k, j, -2);
+                        }
+                    }
+                    break;
+                    case 1: {
+                        for (int k = deckNumber - 1; k >= 1; k--) {
+                            f[i][j + k] = deckNumber;
+                            surroundValue(f, i, j + k, -2);
+                        }
+                    }
+                    break;
+                    case 2: {
+                        for (int k = deckNumber - 1; k >= 1; k--) {
+                            f[i + k][j] = deckNumber;
+                            surroundValue(f, i + k, j, -2);
+                        }
+                    }
+                    break;
+                    case 3: {
+                        for (int k = deckNumber - 1; k >= 1; k--) {
+                            f[i][j - k] = deckNumber;
+                            surroundValue(f, i, j - k, -2);
+                        }
+                    }
                     break;
                 }
+                break;
             }
-            case 1: {
-                if (!(arrayBound(i, j + 3))) {
-                    direction = 3;
-                    break;
-                }
-            }
-            case 2: {
-                if (!(arrayBound(i + 3, j))) {
-                    direction = 0;
-                    break;
-                }
-            }
-            case 3: {
-                if (!(arrayBound(i, j - 3))) {
-                    direction = 1;
-                    break;
-                }
-            }
-        }
-        switch (direction) {
-            case 0: {
-                f[i - 3][j] = 4;
-                surroundValue(f, i - 3, j, -2);
-                f[i - 2][j] = 4;
-                surroundValue(f, i - 2, j, -2);
-                f[i - 1][j] = 4;
-                surroundValue(f, i - 1, j, -2);
-            }
-            break;
-            case 1: {
-                f[i][j + 3] = 4;
-                surroundValue(f, i, j + 3, -2);
-                f[i][j + 2] = 4;
-                surroundValue(f, i, j + 2, -2);
-                f[i][j + 1] = 4;
-                surroundValue(f, i, j + 1, -2);
-            }
-            break;
-            case 2: {
-                f[i + 3][j] = 4;
-                surroundValue(f, i + 3, j, -2);
-                f[i + 2][j] = 4;
-                surroundValue(f, i + 2, j, -2);
-                f[i + 1][j] = 4;
-                surroundValue(f, i + 1, j, -2);
-            }
-            break;
-            case 3: {
-                f[i][j - 3] = 4;
-                surroundValue(f, i, j - 3, -2);
-                f[i][j - 2] = 4;
-                surroundValue(f, i, j - 2, -2);
-                f[i][j - 1] = 4;
-                surroundValue(f, i, j - 1, -2);
-            }
-            break;
         }
         surroundEnd(f);
     }
-
-    public int[][] randomlyFillField(int[][] f) {
-        return f;
+  void Put1DeckShip4Times(int[][] f) {
+      for (int k = 1; k < 5; k++) {
+          while (true){
+              int i = (int) (Math.random() * 10);
+              int j = (int) (Math.random() * 10);
+              if (f[i][j] == 0){
+                  f[i][j] = 1;
+                  surroundValue(f, i, j, -1);
+                  break;
+              }
+          }
+      }
     }
 }
 
