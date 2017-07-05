@@ -1,7 +1,9 @@
+package BattleshipsTheGame;
+
 public class Battleships {
     int[][] Field = new int[10][10];
     //this method checks your coordinates to be within the array
-    private boolean arrayBound(int i, int j) {
+    boolean arrayBound(int i, int j) {
         return ((i >= 0) && (i <= 9)) && ((j >= 0) && (j <= 9));
     }
     //check if we can put new deck
@@ -32,7 +34,7 @@ public class Battleships {
         }
     }
     //randomly puts N_Deck_ship on the field
-    void PutNDeckShip(int[][] f, int deckNumber) {
+    private void PutNDeckShip(int[][] f, int deckNumber) {
         while (true) {
             // i row, j column - head of the ship coordinates
             int i, j;
@@ -99,7 +101,7 @@ public class Battleships {
         }
         surroundEnd(f);
     }
-  void Put1DeckShip4Times(int[][] f) {
+  private void Put1DeckShip4Times(int[][] f) {
       for (int k = 1; k < 5; k++) {
           while (true){
               int i = (int) (Math.random() * 10);
@@ -111,6 +113,26 @@ public class Battleships {
               }
           }
       }
+    }
+    void GenerateShipsOnTheField(int[][] f){
+        PutNDeckShip(f, 4);
+        for (int i = 1; i <= 2; i++) {
+            PutNDeckShip(f, 3);
+        }
+        for (int i = 1; i <= 3; i++) {
+            PutNDeckShip(f, 2);
+        }
+        Put1DeckShip4Times(f);
+    }
+    //next method draws the field from program perspective
+    void DrawField(int[][] f){
+        for (int[] x : f){
+            for (int y : x){
+                if (!(y == -1)) System.out.print(" " + y + " ");
+                else System.out.print(y + " ");
+            }
+            System.out.println();
+        }
     }
 }
 
