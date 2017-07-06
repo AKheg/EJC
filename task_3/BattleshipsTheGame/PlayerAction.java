@@ -19,6 +19,14 @@ public class PlayerAction {
      15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships.
      If we get that number, the game'll end.
      */
+    private char[][] playerField = new char[10][10];
+    {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                playerField[i][j] = '-';
+            }
+        }
+    }
     private int testGameEnd(int[][] f){
         int DestroyedDeckNumber = 0;
         int endNum = 330;
@@ -31,8 +39,11 @@ public class PlayerAction {
         else return 0;
     }
     // surround destroyed ships with their value - 1
-    private void setSurroundDamagedShip(int[][] f, int i, int j){
-        if (((new Battleships()).arrayBound(i, j)) && ((f[i][j] == -1) || (f[i][j] == 6))) f[i][j]--;
+    private void setSurroundDamagedShip(int[][] f, int i, int j) {
+        if (((new Battleships()).arrayBound(i, j)) && ((f[i][j] == -1) || (f[i][j] == 6))) {
+            f[i][j]--;
+            playerField[i][j] = '*';
+        }
     }
     private void SurroundDamagedShip(int[][] f, int i, int j){
         for (int k = -1; k < 2; k++) {
@@ -51,6 +62,7 @@ public class PlayerAction {
                 if (((new Battleships()).arrayBound(k, l)) && (f[k][l] == DeckNumber + 7)) DamagedDeckNumber++;
             }
         }
+        playerField[i][j] = 'x';
         if (DamagedDeckNumber == DeckNumber){
             System.out.println("You destroyed " + DeckNumber + "-Deck ship");
             for (int k = i - (DeckNumber - 1); k <= i + (DeckNumber - 1); k++){
@@ -66,14 +78,24 @@ public class PlayerAction {
     private void ifThatShipDestroyed(int[][] f, int i, int j){
         switch (f[i][j]){
             case 8:{
+                playerField[i][j] = 'x';
                 System.out.println("You destroyed one deck ship!");
                 f[i][j] += 7;
                 SurroundDamagedShip(f, i, j);
             } break;
-            case 9: ifThatShipDestroyedDeckSizeMatters(f, i, j, 2); break;
+            case 9:  ifThatShipDestroyedDeckSizeMatters(f, i, j, 2); break;
             case 10: ifThatShipDestroyedDeckSizeMatters(f, i, j, 3); break;
             case 11: ifThatShipDestroyedDeckSizeMatters(f, i, j, 4); break;
             default: break;
+        }
+    }
+    //Drawing method
+    private void DrawField(char[][] f){
+        for (char[] x : f){
+            for (char y : x){
+                System.out.print(y + " ");
+            }
+            System.out.println();
         }
     }
     //main method
@@ -83,15 +105,18 @@ public class PlayerAction {
         bs.GenerateShipsOnTheField(field);
         System.out.println("Enter your shoot coordinates in <letter>-<number> format.");
         System.out.println("Letters from <a> to <j>; Numbers from 1 to 10; For example: a-2, c-3, etc");
-        System.out.println("You have " + ATTEMPTS_NUMBER + " tries to clear the battlefield");
+        System.out.println("You have " + ATTEMPTS_NUMBER + " tries to clear the battlefield. Good luck!");
         int attempts = ATTEMPTS_NUMBER;
-        bs.DrawField(field);
        while (attempts >= 1){
            //here we'll get coordinates of our shot from the console
             Scanner in = new Scanner(System.in);
             String coordinates = in.nextLine();
             int x = 0, y = 0;
             for (int i = 1; i <= 10 ; i++) {
+                if (i == 10) {
+                    String sub = coordinates.substring(2);
+                    x = Integer.parseInt(sub) - 1;
+                }
                 if (i == (coordinates.charAt(2) - '0')) x = i - 1;
             }
             switch(coordinates.charAt(0)){
@@ -107,10 +132,27 @@ public class PlayerAction {
                 case 'j': y = 9; break;
                 default: System.out.println("no such tile on the field exception");
             }
-            field[x][y] += 7;
+            switch (field[x][y]) {
+                case -1:
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    field[x][y] += 7; break;
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    System.out.println("You already shot that area and result was: "); break;
+                default: break;
+            }
             switch (field[x][y]) {
                 case 6:
                 case 7: {
+                    playerField[x][y] = '~';
                     System.out.println("Miss!");
                     break;
                 }
@@ -130,6 +172,7 @@ public class PlayerAction {
                     System.out.println("You already shot that area!"); break;
                 }
             }
+            DrawField(playerField);
             if (testGameEnd(field) == 1) {System.out.println("Congratulations, you win!"); break;}
             else attempts--;
        }
