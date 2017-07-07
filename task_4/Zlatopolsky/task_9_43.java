@@ -10,7 +10,7 @@ public class task_9_43 {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             String str = (reader.readLine());
             char[] str2 = str.toCharArray();
-            for (int i = 0; i < str.length(); i+=2) {
+            for (int i = 0; i < str.length(); i += 2) {
                 System.out.print(str2[i]);
             }
         } catch (IOException e){
