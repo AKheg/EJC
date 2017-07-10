@@ -12,7 +12,7 @@ public class ZlatopolskyTask9116 {
     private static boolean palindrome(String stringArg){
         stringArg = stringArg.replaceAll(" ", "");
         char[] charStringArg = stringArg.toCharArray();
-        for (int i = 0; i < stringArg.length() / 2 + 1; i++) {
+        for (int i = 0; i < stringArg.length() / 2 + 1; i++){
             if (!(charStringArg[i] == charStringArg[stringArg.length() - i - 1])) return false;
         }
         return true;

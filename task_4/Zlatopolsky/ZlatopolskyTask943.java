@@ -10,7 +10,7 @@ public class ZlatopolskyTask943 {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             String input = reader.readLine();
             char[] charInput = input.toCharArray();
-            for (int i = 0; i < input.length(); i += 2) {
+            for (int i = 0; i < input.length(); i += 2){
                 System.out.print(charInput[i]);
             }
         } catch (IOException e){
