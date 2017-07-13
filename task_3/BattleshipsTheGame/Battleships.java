@@ -2,11 +2,9 @@ package BattleshipsTheGame;
 
 public class Battleships {
     int[][] Field = new int[10][10];
-    //this method checks your coordinates to be within the array
     boolean arrayBound(int i, int j) {
         return ((i >= 0) && (i <= 9)) && ((j >= 0) && (j <= 9));
     }
-    //check if we can put new deck
     private boolean testNewDeck(int[][] f, int i, int j) {
         return arrayBound(i, j) && ((f[i][j] == 0) || (f[i][j] == -2));
     }
@@ -16,7 +14,6 @@ public class Battleships {
             f[i][j] = value;
         }
     }
-    //next two methods surround array cells with value
     private void surroundValue(int[][] f, int i, int j, int value) {
         for (int k = -1; k < 2; k++) {
             for (int l = -1; l < 2; l++) {
@@ -33,7 +30,6 @@ public class Battleships {
             }
         }
     }
-    //randomly puts N_Deck_ship on the field
     private void PutNDeckShip(int[][] f, int deckNumber) {
         while (true) {
             // i row, j column - head of the ship coordinates
@@ -124,7 +120,6 @@ public class Battleships {
         }
         Put1DeckShip4Times(f);
     }
-    //next method draws the field from program perspective
     void DrawField(int[][] f){
         for (int[] x : f){
             for (int y : x){
