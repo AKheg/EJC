@@ -2,18 +2,21 @@ package BattleshipsTheGame;
 
 public class Battleships {
     int[][] Field = new int[10][10];
+    
     boolean arrayBound(int i, int j) {
         return ((i >= 0) && (i <= 9)) && ((j >= 0) && (j <= 9));
     }
+    
     private boolean testNewDeck(int[][] f, int i, int j) {
         return arrayBound(i, j) && ((f[i][j] == 0) || (f[i][j] == -2));
     }
-    //set value into array cell
+
     private void setValue(int[][] f, int i, int j, int value) {
         if ((arrayBound(i, j)) && (f[i][j] == 0)) {
             f[i][j] = value;
         }
     }
+    
     private void surroundValue(int[][] f, int i, int j, int value) {
         for (int k = -1; k < 2; k++) {
             for (int l = -1; l < 2; l++) {
@@ -23,6 +26,7 @@ public class Battleships {
             }
         }
     }
+    
     private void surroundEnd(int[][] f) {
         for (int i = 0; i < f.length; i++) {
             for (int j = 0; j < f.length; j++) {
@@ -30,12 +34,15 @@ public class Battleships {
             }
         }
     }
+    
     private void PutNDeckShip(int[][] f, int deckNumber) {
         while (true) {
+            
             // i row, j column - head of the ship coordinates
             int i, j;
             i = (int) (Math.random() * 10);
             j = (int) (Math.random() * 10);
+            
             //Choose direction: 0 - up, 1 - right, 2 - down, 3 - left
             int direction;
             direction = (int) (Math.random() * 4);
@@ -97,6 +104,7 @@ public class Battleships {
         }
         surroundEnd(f);
     }
+    
   private void Put1DeckShip4Times(int[][] f) {
       for (int k = 1; k < 5; k++) {
           while (true){
@@ -110,6 +118,7 @@ public class Battleships {
           }
       }
     }
+    
     void GenerateShipsOnTheField(int[][] f){
         PutNDeckShip(f, 4);
         for (int i = 1; i <= 2; i++) {
@@ -120,6 +129,7 @@ public class Battleships {
         }
         Put1DeckShip4Times(f);
     }
+    
     void DrawField(int[][] f){
         for (int[] x : f){
             for (int y : x){
