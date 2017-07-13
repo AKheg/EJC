@@ -46,6 +46,7 @@ public class PlayerAction {
             playerField[i][j] = '*';
         }
     }
+    
     private void SurroundDamagedShip(int[][] f, int i, int j){
         for (int k = -1; k < 2; k++) {
             for (int l = -1; l < 2; l++) {
