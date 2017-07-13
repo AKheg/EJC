@@ -4,21 +4,7 @@ import java.util.Scanner;
 
 public class PlayerAction {
     private static int ATTEMPTS_NUMBER = 50;
-    //test after every move if we destroyed all ships
-    /**'1' - one deck ship cell value,
-     '2' - two deck ship cell value, etc
-     '-1' - space around ship
-     After our shot we add 7 to the value in the cell.
-     So after our shot value in the cell lay between 6 and 11:
-     '6' - if we shot the space near ship, '7' - blank cell (value = 0),
-     '8' - we destroyed one deck ship,
-     '9' - '11' - decks of damaged ships.
-     If we destroyed ship, we'd add another 7 to the value in the cell
-     so their values would be lay in '15'-'18' range.
-     So if our game is finished, we would get
-     15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships.
-     If we get that number, the game'll end.
-     */
+    
     private char[][] playerField = new char[10][10];
     {
         for (int i = 0; i < 10; i++) {
@@ -27,6 +13,21 @@ public class PlayerAction {
             }
         }
     }
+    
+    /**'1' - one deck ship cell value,
+     *'2' - two deck ship cell value, etc
+     *'-1' - space around ship
+     *After our shot we add 7 to the value in the cell.
+     *So after our shot value in the cell lay between 6 and 11:
+     *'6' - if we shot the space near ship, '7' - blank cell (value = 0),
+     *'8' - we destroyed one deck ship,
+     *'9' - '11' - decks of damaged ships.
+     *If we destroyed ship, we'd add another 7 to the value in the cell
+     *so their values would be lay in '15'-'18' range.
+     *So if our game is finished, we would get
+     *15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships.
+     *If we get that number, the game'll end.
+     */
     private int testGameEnd(int[][] f){
         int DestroyedDeckNumber = 0;
         int endNum = 330;
@@ -38,7 +39,7 @@ public class PlayerAction {
         if (DestroyedDeckNumber == endNum) return 1;
         else return 0;
     }
-    // surround destroyed ships with their value - 1
+
     private void setSurroundDamagedShip(int[][] f, int i, int j) {
         if (((new Battleships()).arrayBound(i, j)) && ((f[i][j] == -1) || (f[i][j] == 6))) {
             f[i][j]--;
@@ -54,7 +55,7 @@ public class PlayerAction {
             }
         }
     }
-    // next two methods check if we destroyed next ship
+
     private void ifThatShipDestroyedDeckSizeMatters(int[][] f, int i, int j, int DeckNumber){
         int DamagedDeckNumber = 0;
         for (int k = i - (DeckNumber - 1); k <= i + (DeckNumber - 1); k++){
@@ -75,6 +76,7 @@ public class PlayerAction {
             }
         }
     }
+    
     private void ifThatShipDestroyed(int[][] f, int i, int j){
         switch (f[i][j]){
             case 8:{
@@ -89,7 +91,7 @@ public class PlayerAction {
             default: break;
         }
     }
-    //Drawing method
+
     private void DrawField(char[][] f){
         for (char[] x : f){
             for (char y : x){
@@ -98,7 +100,7 @@ public class PlayerAction {
             System.out.println();
         }
     }
-    //main method
+
     void run(){
         Battleships bs = new Battleships();
         int[][] field = bs.Field;
