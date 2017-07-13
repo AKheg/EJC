@@ -110,8 +110,7 @@ public class PlayerAction {
         System.out.println("Letters from <a> to <j>; Numbers from 1 to 10; For example: a-2, c-3, etc");
         System.out.println("You have " + ATTEMPTS_NUMBER + " tries to clear the battlefield. Good luck!");
         int attempts = ATTEMPTS_NUMBER;
-       while (attempts >= 1){
-           //here we'll get coordinates of our shot from the console
+       while (attempts >= 1){           
             Scanner in = new Scanner(System.in);
             String coordinates = in.nextLine();
             int x = 0, y = 0;
