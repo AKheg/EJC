@@ -1,4 +1,4 @@
-package Zlatopolsky;
+package task_4;
 
 public class ZlatopolskyTask9116 {
     public static void main(String[] args) {

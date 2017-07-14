@@ -1,14 +1,15 @@
-public class MallardDuck extends Duck{
+package task_2;
 
-    MallardDuck(){
-        flyBehavior = new FlyWithWings();
+public class DarkwingDuck extends Duck{
+    DarkwingDuck(){
+        flyBehavior = new CapeFloating();
     }
     public void display(){
-        System.out.println("i am wild duck");
     }
     public int getSpeed(){
         return flyBehavior.getSpeed();
     }
+
     public void setSpeed(int value){
         this.speed = value;
     }

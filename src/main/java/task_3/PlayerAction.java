@@ -1,4 +1,4 @@
-package BattleshipsTheGame;
+package task_3;
 
 import java.util.Scanner;
 

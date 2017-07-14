@@ -1,4 +1,4 @@
-package BattleshipsTheGame;
+package task_3;
 
 /**
  * Generates ships on the field randomly

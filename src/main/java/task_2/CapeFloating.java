@@ -1,3 +1,5 @@
+package task_2;
+
 public class CapeFloating implements FlyBehavior {
     private int speed;
 

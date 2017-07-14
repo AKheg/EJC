@@ -1,3 +1,5 @@
+package task_2;
+
 public interface FlyBehavior {
     /**
      * Инкапсулируем сюда способность утки к полету

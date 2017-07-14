@@ -1,5 +1,6 @@
-public class FlyWithWings implements FlyBehavior{
+package task_2;
 
+public class FlyWithWings implements FlyBehavior {
     private int speed;
 
     public int getSpeed(){

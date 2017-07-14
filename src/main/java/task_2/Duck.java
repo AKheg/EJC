@@ -1,3 +1,5 @@
+package task_2;
+
 public abstract class Duck {
     FlyBehavior flyBehavior;
     int speed;

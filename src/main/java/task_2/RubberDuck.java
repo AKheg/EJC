@@ -1,14 +1,20 @@
-public class DefaultDuck extends Duck{
-    DefaultDuck(){
-        flyBehavior = new FlyWithWings();
+package task_2;
+
+public class RubberDuck extends Duck {
+
+    RubberDuck(){
+        flyBehavior = new FlyNoWay();
     }
+
     public void display(){
-        System.out.println("i am nothing but a duck");
     }
+
     public int getSpeed(){
         return flyBehavior.getSpeed();
     }
+
     public void setSpeed(int value){
         this.speed = value;
     }
 }
+
