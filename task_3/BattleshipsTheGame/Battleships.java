@@ -1,5 +1,8 @@
 package BattleshipsTheGame;
 
+/**
+ * Generates ships on the field randomly
+ */
 public class Battleships {
     int[][] Field = new int[10][10];
 

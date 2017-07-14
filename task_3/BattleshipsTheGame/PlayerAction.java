@@ -2,6 +2,10 @@ package BattleshipsTheGame;
 
 import java.util.Scanner;
 
+/**
+ * describes interactions with player
+ * Starts new game
+ */
 public class PlayerAction {
     private static int ATTEMPTS_NUMBER = 50;
 
@@ -25,8 +29,8 @@ public class PlayerAction {
      *If we destroyed ship, we'd add another 7 to the value in the cell
      *so their values would be lay in '15'-'18' range.
      *So if our game is finished, we would get
-     *15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships.
-     *If we get that number, the game'll end.
+     *15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships/
+     *If we get that number, the game will end.
      */
     private int testGameEnd(int[][] field){
         int DestroyedDeckNumber = 0;
@@ -117,7 +121,8 @@ public class PlayerAction {
        while (attempts >= 1){
             Scanner in = new Scanner(System.in);
             String coordinates = in.nextLine();
-            int coordX = 0, coordY = 0;
+            int coordX;
+            int coordY;
 
             switch(coordinates.charAt(0)){
                 case 'a': coordY = 0; break;
