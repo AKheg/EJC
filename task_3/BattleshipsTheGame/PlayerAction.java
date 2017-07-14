@@ -3,7 +3,7 @@ package BattleshipsTheGame;
 import java.util.Scanner;
 
 /**
- * describes interactions with player
+ * Describes interactions with player
  * Starts new game
  */
 public class PlayerAction {

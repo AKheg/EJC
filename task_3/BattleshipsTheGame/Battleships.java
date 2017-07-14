@@ -40,7 +40,7 @@ public class Battleships {
 
     private void PutNDeckShip(int[][] field, int deckNumber) {
         while (true) {
-            // i row, j column - head of the ship coordinates
+            // i row, j column - head of the ship coordinates;
             int i;
             int j;
             i = (int) (Math.random() * 10);
