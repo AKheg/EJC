@@ -99,7 +99,7 @@ public class PlayerAction {
         }
     }
 
-    private void DrawField(char[][] field){
+    private void drawField(char[][] field){
         for (char[] x : field){
             for (char y : x){
                 System.out.print(y + " ");
@@ -202,7 +202,7 @@ public class PlayerAction {
                 }
             }
 
-            DrawField(playerField);
+            drawField(playerField);
             if (testGameEnd(field) == 1) {System.out.println("Congratulations, you win!"); break;}
             else attempts--;
        }
