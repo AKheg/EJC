@@ -33,14 +33,14 @@ public class PlayerAction {
      *If we get that number, the game will end.
      */
     private int testGameEnd(int[][] field){
-        int DestroyedDeckNumber = 0;
+        int destroyedDeckNumber = 0;
         int endNum = 330;
         for (int[] aF : field) {
             for (int j = 0; j < field.length; j++) {
-                if (aF[j] >= 15) DestroyedDeckNumber += aF[j];
+                if (aF[j] >= 15) destroyedDeckNumber += aF[j];
             }
         }
-        if (DestroyedDeckNumber == endNum) return 1;
+        if (destroyedDeckNumber == endNum) return 1;
         else return 0;
     }
 
@@ -53,7 +53,7 @@ public class PlayerAction {
         }
     }
 
-    private void SurroundDamagedShip(int[][] field, int coordI, int coordJ){
+    private void surroundDamagedShip(int[][] field, int coordI, int coordJ){
         for (int k = -1; k < 2; k++) {
             for (int l = -1; l < 2; l++) {
                 if (!((k == 0) && (l == 0))) {
@@ -63,21 +63,21 @@ public class PlayerAction {
         }
     }
 
-    private void ifThatShipDestroyedDeckSizeMatters(int[][] field, int coordI, int coordJ, int DeckNumber){
-        int DamagedDeckNumber = 0;
-        for (int k = coordI - (DeckNumber - 1); k <= coordI + (DeckNumber - 1); k++){
-            for (int l = coordJ - (DeckNumber - 1); l <= coordJ + (DeckNumber - 1); l++){
-                if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == DeckNumber + 7)) DamagedDeckNumber++;
+    private void ifThatShipDestroyedDeckSizeMatters(int[][] field, int coordI, int coordJ, int deckNumber){
+        int damagedDeckNumber = 0;
+        for (int k = coordI - (deckNumber - 1); k <= coordI + (deckNumber - 1); k++){
+            for (int l = coordJ - (deckNumber - 1); l <= coordJ + (deckNumber - 1); l++){
+                if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == deckNumber + 7)) damagedDeckNumber++;
             }
         }
         playerField[coordI][coordJ] = 'x';
-        if (DamagedDeckNumber == DeckNumber){
-            System.out.println("You destroyed " + DeckNumber + "-Deck ship");
-            for (int k = coordI - (DeckNumber - 1); k <= coordI + (DeckNumber - 1); k++){
-                for (int l = coordJ - (DeckNumber - 1); l <= coordJ + (DeckNumber - 1); l++){
-                    if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == DeckNumber + 7)){
+        if (damagedDeckNumber == deckNumber){
+            System.out.println("You destroyed " + deckNumber + "-Deck ship");
+            for (int k = coordI - (deckNumber - 1); k <= coordI + (deckNumber - 1); k++){
+                for (int l = coordJ - (deckNumber - 1); l <= coordJ + (deckNumber - 1); l++){
+                    if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == deckNumber + 7)){
                         field[k][l] += 7;
-                        SurroundDamagedShip(field, k, l);
+                        surroundDamagedShip(field, k, l);
                     }
                 }
             }
@@ -90,7 +90,7 @@ public class PlayerAction {
                 playerField[coordI][coordJ] = 'x';
                 System.out.println("You destroyed one deck ship!");
                 field[coordI][coordJ] += 7;
-                SurroundDamagedShip(field, coordI, coordJ);
+                surroundDamagedShip(field, coordI, coordJ);
             } break;
             case 9:  ifThatShipDestroyedDeckSizeMatters(field, coordI, coordJ, 2); break;
             case 10: ifThatShipDestroyedDeckSizeMatters(field, coordI, coordJ, 3); break;
@@ -99,7 +99,7 @@ public class PlayerAction {
         }
     }
 
-    private void DrawField(char[][] field){
+    private void drawField(char[][] field){
         for (char[] x : field){
             for (char y : x){
                 System.out.print(y + " ");
@@ -110,8 +110,8 @@ public class PlayerAction {
 
     void run(){
         Battleships bs = new Battleships();
-        int[][] field = bs.Field;
-        bs.GenerateShipsOnTheField(field);
+        int[][] field = bs.field;
+        bs.generateShipsOnTheField(field);
 
         System.out.println("Enter your shoot coordinates in <letter>-<number> format.");
         System.out.println("Letters from <a> to <j>; Numbers from 1 to 10; For example: a-2, c-3, etc");
@@ -202,7 +202,7 @@ public class PlayerAction {
                 }
             }
 
-            DrawField(playerField);
+            drawField(playerField);
             if (testGameEnd(field) == 1) {System.out.println("Congratulations, you win!"); break;}
             else attempts--;
        }
