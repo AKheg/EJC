@@ -53,7 +53,7 @@ public class PlayerAction {
         }
     }
 
-    private void SurroundDamagedShip(int[][] field, int coordI, int coordJ){
+    private void surroundDamagedShip(int[][] field, int coordI, int coordJ){
         for (int k = -1; k < 2; k++) {
             for (int l = -1; l < 2; l++) {
                 if (!((k == 0) && (l == 0))) {
@@ -77,7 +77,7 @@ public class PlayerAction {
                 for (int l = coordJ - (DeckNumber - 1); l <= coordJ + (DeckNumber - 1); l++){
                     if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == DeckNumber + 7)){
                         field[k][l] += 7;
-                        SurroundDamagedShip(field, k, l);
+                        surroundDamagedShip(field, k, l);
                     }
                 }
             }
