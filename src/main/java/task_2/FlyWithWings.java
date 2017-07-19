@@ -6,6 +6,7 @@ public class FlyWithWings implements FlyBehavior {
     public int getSpeed(){
         return speed;
     }
+
     public void fly(){
         int random_number = 10 + (int)(Math.random() * 91);
         int shift = (int)(Math.random() * 2);

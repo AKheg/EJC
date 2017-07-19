@@ -6,8 +6,8 @@ public class DuckRace {
     void run(){
         System.out.println("Welcome to DuckCasino1");
 
-        int Cash = 500;
-        while (Cash > 0) {
+        int cash = 500;
+        while (cash > 0) {
             System.out.println("choose your duck from 0 to 4:");
 
             int chosenOne;
@@ -46,12 +46,12 @@ public class DuckRace {
             }
             if (ducks[chosenOne].flyBehavior.getSpeed() < speedMax) {
                 System.out.println("you lost!");
-                Cash -= 200;
+                cash -= 200;
             } else {
                 System.out.println("Congratulations! You win!");
-                Cash += 200;
+                cash += 200;
             }
-            System.out.println("Your balance now: "+Cash);
+            System.out.println("Your balance now: "+cash);
         }
     }
 }
