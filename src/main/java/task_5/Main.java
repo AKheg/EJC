@@ -38,7 +38,9 @@ public class Main {
     public int differentLetters(String str) {
         HashSet set = new HashSet();
         for (int i = 0; i < str.length(); i++) {
+            if (Character.isAlphabetic(str.charAt(i))) {
             set.add(str.charAt(i));
+            }
         }
         return set.size();
     }
