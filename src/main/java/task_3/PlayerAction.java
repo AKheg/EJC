@@ -18,30 +18,36 @@ public class PlayerAction {
         }
     }
 
-    /**'1' - one deck ship cell value,
-     *'2' - two deck ship cell value, etc
-     *'-1' - space around ship
-     *After our shot we add 7 to the value in the cell.
-     *So after our shot value in the cell lay between 6 and 11:
-     *'6' - if we shot the space near ship, '7' - blank cell (value = 0),
-     *'8' - we destroyed one deck ship,
-     *'9' - '11' - decks of damaged ships.
-     *If we destroyed ship, we'd add another 7 to the value in the cell
-     *so their values would be lay in '15'-'18' range.
-     *So if our game is finished, we would get
-     *15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships/
-     *If we get that number, the game will end.
+    /**
+     * '1' - one deck ship cell value,
+     * '2' - two deck ship cell value, etc
+     * '-1' - space around ship
+     * After our shot we add 7 to the value in the cell.
+     * So after our shot value in the cell lay between 6 and 11:
+     * '6' - if we shot the space near ship, '7' - blank cell (value = 0),
+     * '8' - we destroyed one deck ship,
+     * '9' - '11' - decks of damaged ships.
+     * If we destroyed ship, we'd add another 7 to the value in the cell
+     * so their values would be lay in '15'-'18' range.
+     * So if our game is finished, we would get
+     * 15*4+16*2*3+17*3*2+18*4 = 330 - sum of all destroyed ships/
+     * If we get that number, the game will end.
      */
     private int testGameEnd(int[][] field){
         int destroyedDeckNumber = 0;
         int endNum = 330;
         for (int[] aF : field) {
             for (int j = 0; j < field.length; j++) {
-                if (aF[j] >= 15) destroyedDeckNumber += aF[j];
+                if (aF[j] >= 15) {
+                    destroyedDeckNumber += aF[j];
+                }
             }
         }
-        if (destroyedDeckNumber == endNum) return 1;
-        else return 0;
+        if (destroyedDeckNumber == endNum) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     private void setSurroundDamagedShip(int[][] field, int coordI, int coordJ) {
@@ -67,7 +73,9 @@ public class PlayerAction {
         int damagedDeckNumber = 0;
         for (int k = coordI - (deckNumber - 1); k <= coordI + (deckNumber - 1); k++){
             for (int l = coordJ - (deckNumber - 1); l <= coordJ + (deckNumber - 1); l++){
-                if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == deckNumber + 7)) damagedDeckNumber++;
+                if (((new Battleships()).arrayBound(k, l)) && (field[k][l] == deckNumber + 7)) {
+                    damagedDeckNumber++;
+                }
             }
         }
         playerField[coordI][coordJ] = 'x';
@@ -203,8 +211,11 @@ public class PlayerAction {
             }
 
             drawField(playerField);
-            if (testGameEnd(field) == 1) {System.out.println("Congratulations, you win!"); break;}
-            else attempts--;
+            if (testGameEnd(field) == 1) {
+                System.out.println("Congratulations, you win!"); break;
+            } else {
+                attempts--;
+            }
        }
     }
 }

@@ -33,7 +33,9 @@ public class Battleships {
     private void surroundEnd(int[][] field) {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field.length; j++) {
-                if (field[i][j] == -2) field[i][j] = -1;
+                if (field[i][j] == -2) {
+                    field[i][j] = -1;
+                }
             }
         }
     }
@@ -51,20 +53,24 @@ public class Battleships {
             boolean flag = false;
             if (testNewDeck(field, coordI, coordJ)) {
                     if (direction == 0) {
-                        if (testNewDeck(field, coordI - (deckNumber - 1), coordJ))
+                        if (testNewDeck(field, coordI - (deckNumber - 1), coordJ)) {
                             flag = true;
+                        }
                     }
                     else if (direction == 1) {
-                        if (testNewDeck(field, coordI, coordJ + (deckNumber - 1)))
+                        if (testNewDeck(field, coordI, coordJ + (deckNumber - 1))) {
                             flag = true;
+                        }
                     }
                     else if (direction == 2) {
-                        if (testNewDeck(field, coordI + (deckNumber - 1), coordJ))
+                        if (testNewDeck(field, coordI + (deckNumber - 1), coordJ)) {
                             flag = true;
+                        }
                     }
                     else if (direction == 3) {
-                        if (testNewDeck(field, coordI, coordJ - (deckNumber - 1)))
+                        if (testNewDeck(field, coordI, coordJ - (deckNumber - 1))) {
                             flag = true;
+                        }
                     }
 
             }
