@@ -9,12 +9,11 @@ import java.util.*;
  * Create collection - 25 numbers from the keyboard
  * Output - 25 numbers before and after sorting
  */
-
 public class QuickSorting {
 
     public static void main(String[] args) {
-        ArrayList<Integer> arrayList = new ArrayList<>(25);
         int intAmount = 25;
+        ArrayList<Integer> arrayList = new ArrayList<>(intAmount);
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (intAmount > 0) {
@@ -35,35 +34,35 @@ public class QuickSorting {
         System.out.println(arrayList);
     }
 
-    private static int partition(ArrayList<Integer> arrayList, int low, int high) {
-        int middle = (low + high) / 2;
-        int i = low;
-        int j = high;
-        int middleValue = arrayList.get(middle);
+    private static int partition(ArrayList<Integer> arrayList, int bottomIndex, int endIndex) {
+        int middleIndex = (bottomIndex + endIndex) / 2;
+        int start = bottomIndex;
+        int end = endIndex;
+        int middleValue = arrayList.get(middleIndex);
 
-        while (i <= j) {
-            while (arrayList.get(i) < middleValue) {
-                i++;
+        while (start <= end) {
+            while (arrayList.get(start) < middleValue) {
+                start++;
             }
-            while (middleValue < arrayList.get(j)) {
-                j--;
+            while (middleValue < arrayList.get(end)) {
+                end--;
             }
-            if (i <= j) {
-                Collections.swap(arrayList, i, j);
-                i++;
-                j--;
+            if (start <= end) {
+                Collections.swap(arrayList, start, end);
+                start++;
+                end--;
             }
         }
-        return --i;
+        return --start;
     }
 
-    static void quickSort(ArrayList<Integer> arrayList,int start,int end){
-        int q;
+    static void quickSort(ArrayList<Integer> arrayList, int start, int end){
+        int partition;
 
         if(start < end) {
-            q = partition(arrayList, start, end);
-            quickSort(arrayList, start, q);
-            quickSort(arrayList,q + 1, end);
+            partition = partition(arrayList, start, end);
+            quickSort(arrayList, start, partition);
+            quickSort(arrayList,partition + 1, end);
         }
     }
 }

@@ -3,9 +3,8 @@ package task_7;
 import java.util.ArrayList;
 
 /**
- * Insertion sort implementation
+ * Insertion sort implementation with array filled with random values
  */
-
 public class InsertionSorting {
 
     public static void main(String[] args) {
@@ -22,13 +21,13 @@ public class InsertionSorting {
     static void insertionSort(ArrayList<Integer> array) {
 
         for (int i = 1; i < array.size(); i++) {
-            int x = array.get(i);
-            int j = i;
-            while ((j > 0) && (array.get(j - 1) > x)) {
-                array.set(j, array.get(j - 1));
-                j--;
+            int currentElement = array.get(i);
+            int currentIndex = i;
+            while ((currentIndex > 0) && (array.get(currentIndex - 1) > currentElement)) {
+                array.set(currentIndex, array.get(currentIndex - 1));
+                currentIndex--;
             }
-            array.set(j, x);
+            array.set(currentIndex, currentElement);
         }
     }
 }

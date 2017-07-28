@@ -1,23 +1,9 @@
 package task_8;
 
-import java.util.Arrays;
-
+/**
+ * simple bubble sort implementation
+ */
 public class BubbleSorting {
-
-    public static void main(String[] args) {
-        int[] array = new int[100];
-
-        for (int i = 0; i < 99; i++) {
-            int rnd = (int) (Math.random() * 1000);
-            array[i] = rnd;
-        }
-        new BubbleSorting().bubbleSort(array);
-        System.out.println(Arrays.toString(array));
-    }
-
-    /**
-     * simple bubble sort implementation
-     */
     void bubbleSort(int[] array) {
 
         for (int i = array.length - 1; i > 0; i--) {

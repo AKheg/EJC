@@ -1,23 +1,9 @@
 package task_8;
 
-import java.util.Arrays;
-
 /**
  * Merge sort implementation
  */
-
 public class MergeSorting {
-    public static void main(String[] args) {
-        int[] array = new int[100];
-
-        for (int i = 0; i < 99; i++) {
-            int rnd = (int) (Math.random() * 1000);
-            array[i] = rnd;
-        }
-        new MergeSorting().mergeSort(array);
-        System.out.println(Arrays.toString(array));
-    }
-
     void mergeSort(int[] array) {
 
         if (array.length > 1) {
@@ -35,16 +21,17 @@ public class MergeSorting {
     }
 
     private void merge(int[] result, int[] left, int[] right) {
-        int fstInd = 0;
-        int scndInd = 0;
+        int firstIndex = 0;
+        int secondIndex = 0;
 
         for (int i = 0; i < result.length; i++) {
-            if ((scndInd >= right.length) || ((fstInd < left.length) && (left[fstInd] <= right[scndInd]))) {
-                result[i] = left[fstInd];
-                fstInd++;
+            if ((secondIndex >= right.length) ||
+                    ((firstIndex < left.length) && (left[firstIndex] <= right[secondIndex]))) {
+                result[i] = left[firstIndex];
+                firstIndex++;
             } else {
-                result[i] = right[scndInd];
-                scndInd++;
+                result[i] = right[secondIndex];
+                secondIndex++;
             }
         }
     }
